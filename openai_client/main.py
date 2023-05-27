@@ -1,9 +1,11 @@
 from argparse import ArgumentParser
 from lib.openai_wrapper import OpenAiWrapper
 from lib.prompt import Prompt, Prompts
+from lib.role import Role
 
-def main(prompt: str):
-    p1 = Prompt(role = "system", content = "you're an helpful assistant.")
+def main(prompt: str, role: str):
+    role_description = Role().get_role(role)
+    p1 = Prompt(role = "system", content = role_description)
     p2 = Prompt(role = "user", content = prompt)
 
     ps = Prompts()
@@ -23,5 +25,5 @@ if __name__ == "__main__":
     parser.add_argument("--prompt", "-p")
     args = parser.parse_args()
     
-    main(prompt = args.prompt)
+    main(prompt = args.prompt, role = args.role)
 
