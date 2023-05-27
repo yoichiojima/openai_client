@@ -14,5 +14,5 @@ class OpenAiWrapper:
     def complete_chat(self, prompt: str):
         self.chat = openai.ChatCompletion.create(model=self.model, messages=prompt)
 
-    def show_first_message(self):
+    def get_first_message(self):
         return self.chat.get("choices")[0].get("message").get("content")
