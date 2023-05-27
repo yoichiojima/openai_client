@@ -1,4 +1,4 @@
-from .setup_logging import Logging
+from openai_client.lib.setup_logging import Logging
 
 
 class Role:
@@ -29,4 +29,4 @@ class Role:
 
         else:
             self.logger.warning("No role found. setting a role general assistant.")
-            return self.role.get("general_assistant")
+            return self.roles.get("general_assistant")
