@@ -1,9 +1,10 @@
+from argparse import ArgumentParser
 from lib.openai_wrapper import OpenAiWrapper
 from lib.prompt import Prompt, Prompts
 
-def main():
+def main(prompt: str):
     p1 = Prompt(role = "system", content = "you're an helpful assistant.")
-    p2 = Prompt(role = "user", content = "tell me what is good about rust as programming language.")
+    p2 = Prompt(role = "user", content = prompt)
 
     ps = Prompts()
     ps.append(p1)
@@ -12,6 +13,15 @@ def main():
     prompts = ps.get_prompts()
 
     gpt = OpenAiWrapper()
-    print(gpt.complete_chat(prompts))
+    gpt.complete_chat(prompts)
+    print(gpt.show_first_message())
 
-main()
+
+if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument("--role", "-r")
+    parser.add_argument("--prompt", "-p")
+    args = parser.parse_args()
+    
+    main(prompt = args.prompt)
+

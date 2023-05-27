@@ -8,6 +8,10 @@ class OpenAiWrapper:
 
     def __init__(self, model:str = "gpt-3.5-turbo"):
         self.model = model
+        self.chat = {}
 
     def complete_chat(self, prompt: str):
-        return openai.ChatCompletion.create(model = self.model, messages = prompt)
+        self.chat = openai.ChatCompletion.create(model = self.model, messages = prompt)
+    
+    def show_first_message(self):
+        return self.chat.get("choices")[0].get("message").get("content")
