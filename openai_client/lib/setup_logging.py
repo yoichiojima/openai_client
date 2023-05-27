@@ -15,7 +15,6 @@ class Logging:
         formatter = logging.Formatter("%(levelname)s: %(message)s")
         ch.setFormatter(formatter)
 
-
         logger.addHandler(ch)
 
         return logger
