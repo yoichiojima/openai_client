@@ -31,4 +31,4 @@ if __name__ == "__main__":
     parser.add_argument("--prompt", "-p")
     args = parser.parse_args()
 
-    main(prompt=args.prompt, role=args.role)
+    print(main(prompt=args.prompt, role=args.role))
